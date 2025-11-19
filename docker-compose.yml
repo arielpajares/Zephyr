@@ -84,7 +84,7 @@ services:
     networks:
       - ${NETWORK_NAME:-zephyr}
 
-ai:
+  ai:
     build:
       context: ./python
       dockerfile: Dockerfile
