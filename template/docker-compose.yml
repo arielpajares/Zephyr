@@ -1,0 +1,95 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    container_name: ${CONTAINER_PREFIX:-zephyr}_app2
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./www:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - APP_NAME=${APP_NAME}
+      - APP_ENV=${APP_ENV:-local}
+      - APP_DEBUG=${APP_DEBUG:-true}
+      - APP_URL=${APP_URL}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MAIL_MAILER=${MAIL_MAILER:-smtp}
+      - MAIL_HOST=${MAIL_HOST:-mailhog}
+      - MAIL_PORT=${MAIL_PORT:-1025}
+      - MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}
+      - MAIL_FROM_NAME=${MAIL_FROM_NAME}
+      - MAGIC_LINK_EXPIRE_MINUTES=${MAGIC_LINK_EXPIRE_MINUTES:-15}
+    networks:
+      - ${NETWORK_NAME:-zephyr}
+
+  web:
+    image: nginx:alpine
+    container_name: ${CONTAINER_PREFIX:-zephyr}_web2
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8000}:80"
+    volumes:
+      - ./www:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - ${NETWORK_NAME:-zephyr}
+
+  db:
+    image: mysql:${MYSQL_VERSION:-8.0}
+    container_name: ${CONTAINER_PREFIX:-zephyr}_db2
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    ports:
+      - "${DB_PORT_EXTERNAL:-3306}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/sql:/docker-entrypoint-initdb.d
+    networks:
+      - ${NETWORK_NAME:-zephyr}
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: ${CONTAINER_PREFIX:-zephyr}_mailhog
+    ports:
+      - "${MAILHOG_WEB_PORT:-8025}:8025"
+      - "${MAILHOG_SMTP_PORT:-1025}:1025"
+    networks:
+      - ${NETWORK_NAME:-zephyr}
+
+  npm:
+    image: node:${NODE_VERSION:-20}-alpine
+    container_name: ${CONTAINER_PREFIX:-zephyr}_npm2
+    working_dir: /app
+    volumes:
+      - ./zephyr/frontend:/app
+      - node_modules_frontend:/app/node_modules
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - ${NETWORK_NAME:-zephyr}
+
+networks:
+ zephyr:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
+  node_modules_frontend:
+    driver: local

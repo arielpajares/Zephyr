@@ -1,0 +1,50 @@
+# Laravel
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# Environment files
+.env
+.env.backup
+.env.production
+
+# Deployment configuration
+deploy.config
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backups
+backups/
+*.tar.gz
+*.zip
+
+# Build files
+/public/build/
+/public/mix-manifest.json
+
+# Testing
+.phpunit.result.cache
+coverage/
+
+# Composer
+composer.phar
+composer.lock
+
+# NPM
+package-lock.json
+yarn.lock
