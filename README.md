@@ -1,5 +1,3 @@
-![Zephyr Logo](logo.png)
-
 # Zephyr 🚀
 
 > **The gentle breeze that ships your stack.**
@@ -7,6 +5,8 @@
 > *Formerly known as Project Skyrocket / FullStackBreeze*
 
 ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange) ![License](https://img.shields.io/badge/License-MIT-blue) ![Laravel](https://img.shields.io/badge/Backend-Laravel_11-red) ![Next.js](https://img.shields.io/badge/Frontend-Next.js_14+-black)
+
+![Zephyr Logo](logo.png)
 
 ## 📖 About
 
