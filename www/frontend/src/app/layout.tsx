@@ -1,29 +1,19 @@
-import type { Metadata } from 'next'
 import { ReactNode } from 'react'
-import { Nunito } from 'next/font/google'
-import ReactQueryProvider from './providers' // <-- El proveedor de React Query
+import ReactQueryProvider from './providers'
+import Navbar from '@/components/Navbar';
 import '@/app/global.css'
 
-// Configuración de la fuente (igual que en tu JS)
-const nunitoFont = Nunito({
-    subsets: ['latin'],
-    display: 'swap',
-})
-
-// Metadatos (con el tipo importado)
-export const metadata: Metadata = {
-    title: 'Laravel',
-}
-
-// Layout principal (con tipos y el proveedor)
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html lang="en" className={nunitoFont.className}>
-            <body className="antialiased">
-                <ReactQueryProvider>
-                    {children}
-                </ReactQueryProvider>
-            </body>
+        <html lang="en">
+            <ReactQueryProvider>
+                <body className="antialiased">
+                    <Navbar />
+                    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                            {children}
+                    </main>
+                </body>
+            </ReactQueryProvider>
         </html>
     )
 }

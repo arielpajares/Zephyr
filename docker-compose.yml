@@ -8,6 +8,7 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./www:/var/www/html
+      - ./.env:/var/www/html/.env
     depends_on:
       - db
     environment:
@@ -74,7 +75,7 @@ services:
     container_name: ${CONTAINER_PREFIX:-zephyr}_npm
     working_dir: /app
     volumes:
-      - ./zephyr/frontend:/app
+      - ./www/frontend:/app
       - node_modules_frontend:/app/node_modules
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
