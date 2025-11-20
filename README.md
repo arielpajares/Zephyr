@@ -6,7 +6,7 @@
 
 ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange) ![License](https://img.shields.io/badge/License-MIT-blue) ![Laravel](https://img.shields.io/badge/Backend-Laravel_11-red) ![Next.js](https://img.shields.io/badge/Frontend-Next.js_14+-black)
 
-![Zephyr Logo](logo.png)
+<img src="logo.png" alt="Zephyr Logo" width="500"/>
 
 ## 📖 About
 
