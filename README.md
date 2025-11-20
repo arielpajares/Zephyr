@@ -6,6 +6,8 @@
 
 ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange) ![License](https://img.shields.io/badge/License-MIT-blue) ![Laravel](https://img.shields.io/badge/Backend-Laravel_11-red) ![Next.js](https://img.shields.io/badge/Frontend-Next.js_14+-black)
 
+<img src="logo.png" alt="Zephyr Logo" width="250"/>
+
 ## 📖 About
 
 **Zephyr** is a development acceleration engine designed to bridge the gap between database design and a functional full-stack application.
