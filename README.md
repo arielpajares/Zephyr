@@ -1,3 +1,5 @@
+![Zephyr Logo](logo.png)
+
 # Zephyr 🚀
 
 > **The gentle breeze that ships your stack.**
