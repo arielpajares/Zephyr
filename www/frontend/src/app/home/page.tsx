@@ -11,6 +11,7 @@ import {
 
 // Importamos el componente externo (Asegúrate de que la ruta sea correcta en tu proyecto)
 import DataStudio from '@/components/DataStudio';
+import Link from 'next/link';
 
 type ViewState = 'dashboard' | 'data-studio';
 
@@ -40,14 +41,11 @@ export default function ZephyrApp() {
               
               {/* Start New Project Button */}
               <div className="flex-shrink-0">
-                <button 
-                  onClick={() => setView('data-studio')}
-                  className="group relative px-8 py-4 bg-[#00ABE4] text-white rounded-2xl font-bold text-lg shadow-xl shadow-[#00ABE4]/30 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3 overflow-hidden"
-                >
+                <Link href="/workspace" className={`"group relative px-8 py-4 bg-[#00ABE4] text-white rounded-2xl font-bold text-lg shadow-xl shadow-[#00ABE4]/30 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3 overflow-hidden"`}>
                    <span className="relative z-10">Start New Project</span>
                    <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                </button>
+                </Link>
               </div>
             </div>
 
