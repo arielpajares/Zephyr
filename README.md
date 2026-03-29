@@ -40,7 +40,7 @@ It eliminates the "boilerplate fatigue" of setting up Laravel Breeze and Next.js
 
 ## 🚀 Getting Started (Prototype)
 
-*Note: This project is currently under active development. The instructions below refer to the upcoming Alpha release (Dec 20, 2025).*
+*Note: This project is currently under active development. The instructions below refer to the upcoming Alpha release.*
 
 ### 1. Define your Schema
 Create a `schema.json` file in the root directory:
